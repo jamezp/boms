@@ -58,7 +58,6 @@
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>${version.junit}</version>
                 <scope>test</scope>
             </dependency>
 
@@ -121,7 +120,6 @@
             <dependency>
                 <groupId>org.wildfly.arquillian</groupId>
                 <artifactId>wildfly-arquillian-container-managed</artifactId>
-                <version>${version.org.wildfly.arquillian}</version>
             </dependency>
 
             <!-- Arquillian support for JBoss WildFly 8 container -->
@@ -130,7 +128,6 @@
             <dependency>
                 <groupId>org.wildfly.arquillian</groupId>
                 <artifactId>wildfly-arquillian-container-remote</artifactId>
-                <version>${version.org.wildfly.arquillian}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -142,7 +139,6 @@
                     we ensure we are using a version compatible with Arquillian -->
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${version.surefire.plugin}</version>
                 </plugin>
                 <!-- The WildFly plugin deploys your war to a local WildFly container -->
                 <!-- To use, set the JBOSS_HOME environment variable and

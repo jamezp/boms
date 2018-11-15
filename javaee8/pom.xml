@@ -54,43 +54,25 @@
         <!-- Version of server -->
         <version.server>15.0.0.Alpha1-SNAPSHOT</version.server>
 
-        <!-- Versions on server's core -->
-        <version.junit>4.12</version.junit>
-        <version.org.jboss.logging.jboss-logging>3.3.2.Final</version.org.jboss.logging.jboss-logging>
-        <version.org.jboss.logging.jboss-logging-tools>2.1.0.Final</version.org.jboss.logging.jboss-logging-tools>
-        <version.org.wildfly.client.config>1.0.1.Final</version.org.wildfly.client.config>
-        <version.org.wildfly.common>1.4.0.Final</version.org.wildfly.common>
-        <version.org.wildfly.discovery>1.1.1.Final</version.org.wildfly.discovery>
-        <version.org.wildfly.security.elytron>1.6.0.Final</version.org.wildfly.security.elytron>
-
-        <!-- Versions on server -->
-        <version.org.hibernate>5.3.6.Final</version.org.hibernate>
-        <version.org.hibernate.commons.annotations>5.0.4.Final</version.org.hibernate.commons.annotations>
-        <version.org.hibernate.search>5.10.3.Final</version.org.hibernate.search>
-        <version.org.hibernate.validator>6.0.13.Final</version.org.hibernate.validator>
-        <version.org.infinispan>9.3.1.Final</version.org.infinispan>
-        <version.org.jboss.arquillian.core>1.1.13.Final</version.org.jboss.arquillian.core>
-        <version.org.jboss.ejb3.ext-api>2.2.0.Final</version.org.jboss.ejb3.ext-api>
-        <version.org.jboss.narayana>5.9.0.Final</version.org.jboss.narayana>
-        <version.org.jboss.resteasy>3.6.1.SP2</version.org.jboss.resteasy>
-        <version.org.jboss.security.jboss-negotiation>3.0.4.Final</version.org.jboss.security.jboss-negotiation>
-        <version.org.jboss.security.jbossxacml>2.0.8.Final</version.org.jboss.security.jbossxacml>
-        <version.org.picketbox.picketbox-commons>1.0.0.final</version.org.picketbox.picketbox-commons>
-        <version.org.picketlink>2.5.5.SP12</version.org.picketlink>
-        <version.org.wildfly.arquillian>2.1.1.Final</version.org.wildfly.arquillian>
-        <version.org.wildfly.plugin>1.2.1.Final</version.org.wildfly.plugin>
-        <version.surefire.plugin>2.22.0</version.surefire.plugin>
-
         <!-- Other versions -->
+        <version.org.jboss.arquillian.core>1.1.13.Final</version.org.jboss.arquillian.core>
         <version.org.jboss.arquillian.extension.drone>2.3.1</version.org.jboss.arquillian.extension.drone>
         <version.org.jboss.arquillian.graphene>2.3.1</version.org.jboss.arquillian.graphene>
         <version.org.jboss.shrinkwrap.resolver>2.2.6</version.org.jboss.shrinkwrap.resolver>
         <version.org.testng>6.11</version.org.testng>
+        <version.org.wildfly.plugin>2.0.0.Final</version.org.wildfly.plugin>
 
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.wildfly</groupId>
+                <artifactId>wildfly-component-matrix</artifactId>
+                <version>${version.server}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
         <!-- BOM imports -->
             <!-- JBoss distributes a complete set of Java EE APIs including
                 a Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or
@@ -137,65 +119,53 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
-                <version>${version.org.hibernate}</version>
             </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-entitymanager</artifactId>
-                <version>${version.org.hibernate}</version>
             </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-envers</artifactId>
-                <version>${version.org.hibernate}</version>
             </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-jpamodelgen</artifactId>
-                <version>${version.org.hibernate}</version>
             </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-search-engine</artifactId>
-                <version>${version.org.hibernate.search}</version>
             </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-search-orm</artifactId>
-                <version>${version.org.hibernate.search}</version>
             </dependency>
             <dependency>
                 <groupId>org.hibernate.validator</groupId>
                 <artifactId>hibernate-validator</artifactId>
-                <version>${version.org.hibernate.validator}</version>
             </dependency>
             <dependency>
                 <groupId>org.hibernate.validator</groupId>
                 <artifactId>hibernate-validator-annotation-processor</artifactId>
-                <version>${version.org.hibernate.validator}</version>
             </dependency>
 
 
             <dependency>
                 <groupId>org.infinispan</groupId>
                 <artifactId>infinispan-core</artifactId>
-                <version>${version.org.infinispan}</version>
             </dependency>
             <dependency>
                 <groupId>org.infinispan</groupId>
                 <artifactId>infinispan-client-hotrod</artifactId>
-                <version>${version.org.infinispan}</version>
             </dependency>
             <dependency>
                 <groupId>org.infinispan</groupId>
                 <artifactId>infinispan-directory-provider</artifactId>
-                <version>${version.org.infinispan}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.ejb3</groupId>
                 <artifactId>jboss-ejb3-ext-api</artifactId>
-                <version>${version.org.jboss.ejb3.ext-api}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.jboss.javaee</groupId>
@@ -209,26 +179,22 @@
             <dependency>
                 <groupId>org.jboss.logging</groupId>
                 <artifactId>jboss-logging-processor</artifactId>
-                <version>${version.org.jboss.logging.jboss-logging-tools}</version>
             </dependency>
             <!--  the jboss-logging-tools annotations  -->
             <dependency>
                 <groupId>org.jboss.logging</groupId>
                 <artifactId>jboss-logging-annotations</artifactId>
-                <version>${version.org.jboss.logging.jboss-logging-tools}</version>
             </dependency>
             <!--  jboss-logging API -->
             <dependency>
                 <groupId>org.jboss.logging</groupId>
                 <artifactId>jboss-logging</artifactId>
-                <version>${version.org.jboss.logging.jboss-logging}</version>
             </dependency>
 
             <!-- The XTS api needed to use WS-TX -->
             <dependency>
                 <groupId>org.jboss.narayana.xts</groupId>
                 <artifactId>jbossxts</artifactId>
-                <version>${version.org.jboss.narayana}</version>
                 <scope>provided</scope>
                 <classifier>api</classifier>
             </dependency>
@@ -236,129 +202,105 @@
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-atom-provider</artifactId>
-                <version>${version.org.jboss.resteasy}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-jaxb-provider</artifactId>
-                <version>${version.org.jboss.resteasy}</version>
             </dependency>
             <!-- resteasy-jettison-provider is deprecated for EAP 7 -->
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-jettison-provider</artifactId>
-                <version>${version.org.jboss.resteasy}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-jackson-provider</artifactId>
-                <version>${version.org.jboss.resteasy}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-jackson2-provider</artifactId>
-                <version>${version.org.jboss.resteasy}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-jaxrs</artifactId>
-                <version>${version.org.jboss.resteasy}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-client</artifactId>
-                <version>${version.org.jboss.resteasy}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-multipart-provider</artifactId>
-                <version>${version.org.jboss.resteasy}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-json-p-provider</artifactId>
-                <version>${version.org.jboss.resteasy}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-jsapi</artifactId>
-                <version>${version.org.jboss.resteasy}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-validator-provider-11</artifactId>
-                <version>${version.org.jboss.resteasy}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-spring</artifactId>
-                <version>${version.org.jboss.resteasy}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.security</groupId>
                 <artifactId>jboss-negotiation-common</artifactId>
-                <version>${version.org.jboss.security.jboss-negotiation}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.security</groupId>
                 <artifactId>jboss-negotiation-extras</artifactId>
-                <version>${version.org.jboss.security.jboss-negotiation}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.security</groupId>
                 <artifactId>jboss-negotiation-ntlm</artifactId>
-                <version>${version.org.jboss.security.jboss-negotiation}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.security</groupId>
                 <artifactId>jboss-negotiation-spnego</artifactId>
-                <version>${version.org.jboss.security.jboss-negotiation}</version>
                 <scope>provided</scope>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.security</groupId>
                 <artifactId>jbossxacml</artifactId>
-                <version>${version.org.jboss.security.jbossxacml}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.picketbox</groupId>
                 <artifactId>picketbox-commons</artifactId>
-                <version>${version.org.picketbox.picketbox-commons}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.picketlink</groupId>
                 <artifactId>picketlink-api</artifactId>
-                <version>${version.org.picketlink}</version>
             </dependency>
             <dependency>
                 <groupId>org.picketlink</groupId>
                 <artifactId>picketlink-common</artifactId>
-                <version>${version.org.picketlink}</version>
             </dependency>
             <dependency>
                 <groupId>org.picketlink</groupId>
                 <artifactId>picketlink-federation</artifactId>
-                <version>${version.org.picketlink}</version>
             </dependency>
             <dependency>
                 <groupId>org.picketlink</groupId>
                 <artifactId>picketlink-impl</artifactId>
-                <version>${version.org.picketlink}</version>
             </dependency>
             <dependency>
                 <groupId>org.picketlink</groupId>
                 <artifactId>picketlink-idm-api</artifactId>
-                <version>${version.org.picketlink}</version>
             </dependency>
             <dependency>
                 <groupId>org.picketlink</groupId>
                 <artifactId>picketlink-idm-impl</artifactId>
-                <version>${version.org.picketlink}</version>
             </dependency>
 
             <dependency>
@@ -376,26 +318,22 @@
             <dependency>
                 <groupId>org.wildfly.security</groupId>
                 <artifactId>wildfly-elytron</artifactId>
-                <version>${version.org.wildfly.security.elytron}</version>
             </dependency>
 
 
             <dependency>
                 <groupId>org.wildfly.discovery</groupId>
                 <artifactId>wildfly-discovery-client</artifactId>
-                <version>${version.org.wildfly.discovery}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.wildfly.client</groupId>
                 <artifactId>wildfly-client-config</artifactId>
-                <version>${version.org.wildfly.client.config}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.wildfly.common</groupId>
                 <artifactId>wildfly-common</artifactId>
-                <version>${version.org.wildfly.common}</version>
             </dependency>
 
         </dependencies>
